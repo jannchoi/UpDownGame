@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NumberCollectionViewCell" customModule="UpDownGame" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VXP-a2-TuB">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIA-Pn-37a">
+                                <rect key="frame" x="29" y="39.666666666666657" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LIA-Pn-37a" firstAttribute="centerX" secondItem="VXP-a2-TuB" secondAttribute="centerX" id="SW4-Z8-s68"/>
+                            <constraint firstItem="LIA-Pn-37a" firstAttribute="centerY" secondItem="VXP-a2-TuB" secondAttribute="centerY" id="kV7-T7-XVy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="VXP-a2-TuB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="63V-4k-RTw"/>
+                <constraint firstAttribute="trailing" secondItem="VXP-a2-TuB" secondAttribute="trailing" id="EQl-27-sIZ"/>
+                <constraint firstAttribute="bottom" secondItem="VXP-a2-TuB" secondAttribute="bottom" id="hj4-pH-j3g"/>
+                <constraint firstItem="VXP-a2-TuB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xt2-8m-8QG"/>
+            </constraints>
+            <size key="customSize" width="396" height="373"/>
+            <connections>
+                <outlet property="numLabel" destination="LIA-Pn-37a" id="nDg-tX-p59"/>
+                <outlet property="whiteCircleView" destination="VXP-a2-TuB" id="ByM-hk-y7s"/>
+            </connections>
+            <point key="canvasLocation" x="177.09923664122135" y="78.521126760563391"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
