@@ -58,21 +58,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HCP-3B-3M1">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HCP-3B-3M1">
+                                <rect key="frame" x="0.0" y="59" width="393" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Lbc-Os-ul9">
+                                <rect key="frame" x="20" y="784" width="353" height="34"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="353" id="RTe-ud-KsX"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="tgg-fK-mNW"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TZL-FJ-EkX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="TZL-FJ-EkX" firstAttribute="bottom" secondItem="HCP-3B-3M1" secondAttribute="bottom" id="HBK-rv-h84"/>
+                            <constraint firstItem="Lbc-Os-ul9" firstAttribute="bottom" secondItem="TZL-FJ-EkX" secondAttribute="bottom" id="8BA-wr-z1J"/>
+                            <constraint firstItem="TZL-FJ-EkX" firstAttribute="trailing" secondItem="Lbc-Os-ul9" secondAttribute="trailing" constant="20" id="CSG-d4-pGc"/>
+                            <constraint firstItem="Lbc-Os-ul9" firstAttribute="top" secondItem="HCP-3B-3M1" secondAttribute="bottom" id="ERC-2Z-eWS"/>
                             <constraint firstItem="HCP-3B-3M1" firstAttribute="top" secondItem="TZL-FJ-EkX" secondAttribute="top" id="O3C-6p-AIQ"/>
+                            <constraint firstItem="Lbc-Os-ul9" firstAttribute="leading" secondItem="TZL-FJ-EkX" secondAttribute="leading" constant="20" id="OrE-Qm-40r"/>
                             <constraint firstItem="TZL-FJ-EkX" firstAttribute="trailing" secondItem="HCP-3B-3M1" secondAttribute="trailing" id="Vay-nL-Tvi"/>
                             <constraint firstItem="HCP-3B-3M1" firstAttribute="leading" secondItem="TZL-FJ-EkX" secondAttribute="leading" id="wo5-Ou-yz2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatTextView" destination="Lbc-Os-ul9" id="T4c-zf-zud"/>
                         <outlet property="chattingTableView" destination="HCP-3B-3M1" id="pCx-V6-213"/>
                     </connections>
                 </viewController>
@@ -100,6 +116,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

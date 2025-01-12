@@ -93,6 +93,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="q35-mK-WJa" id="sXS-N6-pem"/>
+                <outlet property="messageLabel" destination="Feo-5L-T2P" id="SMy-T2-iLy"/>
+                <outlet property="nameLabel" destination="COY-Ml-UNg" id="XAT-ac-pic"/>
+                <outletCollection property="profileImageCollection" destination="Y07-BX-DcF" collectionClass="NSMutableArray" id="uTR-Xo-cIA"/>
+                <outletCollection property="profileImageCollection" destination="ohe-uc-RQT" collectionClass="NSMutableArray" id="BnQ-Ue-no8"/>
+                <outletCollection property="profileImageCollection" destination="NZZ-z7-ueF" collectionClass="NSMutableArray" id="AQl-sx-MhK"/>
+                <outletCollection property="profileImageCollection" destination="rx0-sP-aWe" collectionClass="NSMutableArray" id="tkB-fC-Fta"/>
+            </connections>
             <point key="canvasLocation" x="232.06106870229007" y="47.535211267605639"/>
         </tableViewCell>
     </objects>

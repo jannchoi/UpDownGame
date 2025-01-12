@@ -18,15 +18,22 @@ class TravelTalkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
+        
         let id = TravelTalkTableViewCell.identifier
         let xib = UINib(nibName: id, bundle: nil)
         chatTableView.register(xib, forCellReuseIdentifier: id)
         
+        let groupid = GroupTableViewCell.identifier
+        let groupxib = UINib(nibName: groupid, bundle: nil)
+        chatTableView.register(groupxib, forCellReuseIdentifier: groupid)
+        
         chatTableView.delegate = self
         chatTableView.dataSource = self
-        
 
         searchBar.delegate = self
+        searchBar.placeholder = "친구 이름을 검색해보세요."
+        
+        chatTableView.separatorStyle = .none
     }
 
 }
@@ -79,10 +86,20 @@ extension TravelTalkViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(#function)
-        let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkTableViewCell.identifier) as! TravelTalkTableViewCell
         let row = filteredList[indexPath.row]
-        cell.configData(row: row)
-        return cell
+        if row.chatroomImage.count == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TravelTalkTableViewCell.identifier) as! TravelTalkTableViewCell
+            cell.configData(row: row)
+            
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: GroupTableViewCell.identifier) as! GroupTableViewCell
+            cell.configData(row: row)
+            
+            return cell
+        }
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -92,11 +109,9 @@ extension TravelTalkViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "TravelTalk", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: ChatRoomViewController.identifier) as! ChatRoomViewController
-        //let nav = UINavigationController(rootViewController: vc)
 
         vc.chatRoomInfo = filteredList[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
-        //present(nav, animated: true)
     }
     
     
