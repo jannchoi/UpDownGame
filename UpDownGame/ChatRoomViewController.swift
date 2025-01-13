@@ -15,11 +15,13 @@ class ChatRoomViewController: UIViewController {
     @IBOutlet var chatTextView: UITextView!
     
     var chatRoomInfo: ChatRoom?
+    lazy var updatedChatList = listUpdate(list: chatRoomInfo?.chatList ?? [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib(id: UserTableViewCell.identifier, tableView: chattingTableView)
         registerXib(id: OtherTableViewCell.identifier, tableView: chattingTableView)
+        registerXib(id: DateTableViewCell.identifier, tableView: chattingTableView)
 
         chattingTableView.dataSource = self
         chattingTableView.delegate = self
@@ -112,21 +114,54 @@ extension ChatRoomViewController: UITextViewDelegate {
             }
         }
     }
+    func dateChange(date: String?) -> String{
+        let originDate = date ?? "2025-01-01 00:00"
+        let result: String
+        if let date = DateFormatter.longDate.date(from: originDate) {
+            let formattedDate = DateFormatter.shortDate.string(from: date)
+            result = formattedDate
+        } else {
+            result = "00.00.00"
+        }
+        return result
+    }
+    func listUpdate(list: [Chat]) -> [Chat]{
+        var list = list
+        var idx = 0
+        while true {
+            idx += 1
+            if dateChange(date: list[idx - 1].date) != dateChange(date: list[idx].date) {
+                list.insert(list[idx], at: idx)
+            }
+            if idx == list.count - 1{
+                break
+            }
+        }
+        return list
+    }
 }
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatRoomInfo?.chatList.count ?? 0
+        return updatedChatList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let row = chatRoomInfo?.chatList[indexPath.row] else {
-            let cell = chattingTableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
+//        guard let row = chatRoomInfo?.chatList[indexPath.row] else {
+//            let cell = chattingTableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
+//            return cell
+//        }
+        let row = updatedChatList[indexPath.row]
+        if indexPath.row != 0 &&
+            dateChange(date: row.date)
+            != dateChange(date: updatedChatList[indexPath.row - 1].date) {
+            let cell = chattingTableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier) as! DateTableViewCell
+            cell.dateLabel.text = dateChange(date: row.date)
             return cell
         }
         
-        if chatRoomInfo?.chatList[indexPath.row].user.rawValue == "User" {
+        if updatedChatList[indexPath.row].user.rawValue == "User" {
             let cell = chattingTableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
             
             cell.configDate(row: row)
@@ -140,5 +175,6 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
 
 }
