@@ -18,11 +18,8 @@ class ChatRoomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userxib = UINib(nibName: UserTableViewCell.identifier, bundle: nil)
-        chattingTableView.register(userxib, forCellReuseIdentifier: UserTableViewCell.identifier)
-
-        let otherxib = UINib(nibName: OtherTableViewCell.identifier, bundle: nil)
-        chattingTableView.register(otherxib, forCellReuseIdentifier: OtherTableViewCell.identifier)
+        registerXib(id: UserTableViewCell.identifier, tableView: chattingTableView)
+        registerXib(id: OtherTableViewCell.identifier, tableView: chattingTableView)
 
         chattingTableView.dataSource = self
         chattingTableView.delegate = self
@@ -52,16 +49,7 @@ class ChatRoomViewController: UIViewController {
          */
         
     }
-    
-    func goToBottom() {
-        let lastIdx = chattingTableView.numberOfRows(inSection: 0) - 1
-        if lastIdx >= 0 {
-            let indexPath = IndexPath(row: lastIdx, section: 0)
-            chattingTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
-        
-    }
-    
+
     /*
     @objc func keyboardWillShow(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
@@ -76,8 +64,19 @@ class ChatRoomViewController: UIViewController {
         self.view.frame.origin.y = 0
     }
      */
+    func registerXib(id: String, tableView: UITableView) {
+        let xib = UINib(nibName: id, bundle: nil)
+        tableView.register(xib, forCellReuseIdentifier: id)
+    }
 
-    
+    func goToBottom() {
+        let lastIdx = chattingTableView.numberOfRows(inSection: 0) - 1
+        if lastIdx >= 0 {
+            let indexPath = IndexPath(row: lastIdx, section: 0)
+            chattingTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+        
+    }
 
 }
 extension ChatRoomViewController: UITextViewDelegate {

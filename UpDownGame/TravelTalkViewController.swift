@@ -19,13 +19,8 @@ class TravelTalkViewController: UIViewController {
         super.viewDidLoad()
         print(#function)
         
-        let id = TravelTalkTableViewCell.identifier
-        let xib = UINib(nibName: id, bundle: nil)
-        chatTableView.register(xib, forCellReuseIdentifier: id)
-        
-        let groupid = GroupTableViewCell.identifier
-        let groupxib = UINib(nibName: groupid, bundle: nil)
-        chatTableView.register(groupxib, forCellReuseIdentifier: groupid)
+        registerXib(id: TravelTalkTableViewCell.identifier, tableView: chatTableView)
+        registerXib(id: GroupTableViewCell.identifier, tableView: chatTableView)
         
         chatTableView.delegate = self
         chatTableView.dataSource = self
@@ -34,6 +29,11 @@ class TravelTalkViewController: UIViewController {
         searchBar.placeholder = "친구 이름을 검색해보세요."
         
         chatTableView.separatorStyle = .none
+    }
+    
+    func registerXib(id: String, tableView: UITableView) {
+        let xib = UINib(nibName: id, bundle: nil)
+        tableView.register(xib, forCellReuseIdentifier: id)
     }
 
 }
